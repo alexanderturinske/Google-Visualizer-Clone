@@ -8,19 +8,19 @@
 }
 
 .card--red {
-  background-color: red;
+  background-color: darkred;
 }
 
 .card--blue {
-  background-color: blue;
+  background-color: darkblue;
 }
 
 .card--green {
-  background-color: green;
+  background-color: darkgreen;
 }
 
 .card--yellow {
-  background-color: yellow;
+  background-color: burlywood;
 }
 
 .card__input {
