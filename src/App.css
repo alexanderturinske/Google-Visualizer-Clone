@@ -2,3 +2,13 @@
   text-align: center;
   display: grid;
 }
+
+.card-size {
+  position: absolute;
+  height: 50px;
+  width: 50px;
+  left: 10px;
+  top: 10px;
+  border-radius: 10%;
+  opacity: 50%;
+}

@@ -37,6 +37,7 @@ class App extends Component {
 
     return (
       <div className='App'>
+        <button className='card-size'></button>
         {
           shownAnmials.map(animal => (
             <Card

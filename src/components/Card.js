@@ -15,7 +15,7 @@ class Card extends Component {
       // take the length of the current value, add one, and grab the first n characters
       // from the search term
       this.nameInput.value = this.props.searchTerm.substring(0, this.nameInput.value.length + 1);
-    }, 1000);
+    }, 100);
 
     const clearCard = this.clearCard(interval);
   }
