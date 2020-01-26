@@ -31,7 +31,7 @@ class App extends Component {
       <div className='App'>
         {
           shownAnmials.map(animal => (
-            <Card searchTerm={animal} color={color} />
+            <Card key={animal} searchTerm={animal} color={color} />
           ))
         }
       </div>
