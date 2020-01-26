@@ -11,11 +11,20 @@ class App extends Component {
     }
   }
 
+  getAnimals() {
+    const shownAnimals = [];
+    for(let i = 0; i < this.state.size; i++) {
+      shownAnimals.push(animals[i]);
+    }
+    return shownAnimals;
+  }
+
   render() {
+    const shownAnmials = this.getAnimals();
     return (
       <div className='App'>
         {
-          animals.map(animal => (
+          shownAnmials.map(animal => (
             <Card searchTerm={animal} />
           ))
         }
