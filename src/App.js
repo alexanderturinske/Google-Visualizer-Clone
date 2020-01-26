@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import { Card } from './components'
 import animals from './assets/animal_names.json'
+import colors  from './assets/colors.json'
 
 class App extends Component {
   constructor(props) {
@@ -19,13 +20,18 @@ class App extends Component {
     return shownAnimals;
   }
 
+  getColor() {
+    return colors[Math.floor(Math.random() * colors.length)]
+  }
   render() {
     const shownAnmials = this.getAnimals();
+    const color = this.getColor();
+
     return (
       <div className='App'>
         {
           shownAnmials.map(animal => (
-            <Card searchTerm={animal} />
+            <Card searchTerm={animal} color={color} />
           ))
         }
       </div>

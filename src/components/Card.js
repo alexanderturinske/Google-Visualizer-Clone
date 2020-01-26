@@ -8,9 +8,9 @@ class Card extends Component {
   }
 
   render() {
-    const { searchTerm } = this.props;
+    const { searchTerm, color } = this.props;
     return (
-      <div className='card'>
+      <div className={`card card--${color}`}>
         <input
           className="card__input"
           ref={(input) => { this.nameInput = input; }}

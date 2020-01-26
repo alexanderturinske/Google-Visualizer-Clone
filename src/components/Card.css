@@ -7,7 +7,26 @@
   width: 100vw;
 }
 
+.card--red {
+  background-color: red;
+}
+
+.card--blue {
+  background-color: blue;
+}
+
+.card--green {
+  background-color: green;
+}
+
+.card--yellow {
+  background-color: yellow;
+}
+
 .card__input {
   border: none;
   outline: none;
+  background: none;
+  font-size: 8rem;
+  color: #FFF;
 }
