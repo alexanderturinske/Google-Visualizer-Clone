@@ -21,10 +21,11 @@ class Card extends Component {
   }
 
   clearCard(interval) {
+    const { typingComplete } = this.props;
     return function() {
       clearInterval(interval);
       setTimeout(() => {
-        console.log('cleared');
+        typingComplete();
       }, Math.random() * 2);
     }
   }

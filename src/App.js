@@ -8,14 +8,16 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      size: 1
+      current: 0,
+      size: 1,
     }
   }
 
   getAnimals() {
+    const { current, size } = this.state;
     const shownAnimals = [];
-    for(let i = 0; i < this.state.size; i++) {
-      shownAnimals.push(animals[i]);
+    for(let i = 0; i < size; i++) {
+      shownAnimals.push(animals[current]);
     }
     return shownAnimals;
   }
@@ -23,6 +25,12 @@ class App extends Component {
   getColor() {
     return colors[Math.floor(Math.random() * colors.length)]
   }
+
+  typingComplete = () => {
+    const { current, size } = this.state;
+    this.setState({ current: current + size });
+  }
+
   render() {
     const shownAnmials = this.getAnimals();
     const color = this.getColor();
@@ -31,7 +39,12 @@ class App extends Component {
       <div className='App'>
         {
           shownAnmials.map(animal => (
-            <Card key={animal} searchTerm={animal} color={color} />
+            <Card
+              key={animal}
+              color={color}
+              searchTerm={animal}
+              typingComplete={this.typingComplete}
+            />
           ))
         }
       </div>
