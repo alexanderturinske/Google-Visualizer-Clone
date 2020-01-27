@@ -21,6 +21,18 @@ class Card extends Component {
     }
   }
 
+  getNewColor() {
+    const { getColor } = this.props;
+    const oldColor = this.state.color;
+    let newColor = getColor();
+
+    while (oldColor === newColor) {
+      newColor = getColor();
+    }
+
+    return newColor;
+  }
+
   startTyping() {
     const interval = setInterval(() => {
       const currentLength = this.state.current.length;
@@ -47,7 +59,7 @@ class Card extends Component {
   }
 
   typingComplete = () => {
-    this.setState({ search: this.props.getAnimal(), current: '' })
+    this.setState({ search: this.props.getAnimal(), current: '', color: this.getNewColor() })
   }
 
   render() {
