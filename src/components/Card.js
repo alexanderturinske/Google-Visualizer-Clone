@@ -1,17 +1,18 @@
 import React, { Component } from 'react';
 import './Card.css';
+import { getAnimal, getColor } from '../utils';
 
 class Card extends Component {
   constructor(props) {
     super(props);
 
-    const frontColor = this.props.getColor();
+    const frontColor = getColor();
     this.state = {
       frontColor,
-      backColor: this.props.getColor(frontColor),
+      backColor: getColor(frontColor),
       current: '',
       isFrontShowing: true,
-      search: this.props.getAnimal(),
+      search: getAnimal(),
     }
   }
 
@@ -38,9 +39,9 @@ class Card extends Component {
 
       if (!this.state.isFrontShowing) {
         frontColor = this.state.frontColor;
-        backColor = this.props.getColor(this.state.frontColor);
+        backColor = getColor(this.state.frontColor);
       } else {
-        frontColor = this.props.getColor(this.state.backColor);
+        frontColor = getColor(this.state.backColor);
         backColor = this.state.backColor;
       }
       // take the length of the current value, add one, and grab the first n characters
@@ -69,7 +70,7 @@ class Card extends Component {
     this.setState({
       current: '',
       isFrontShowing: !this.state.isFrontShowing,
-      search: this.props.getAnimal(),
+      search: getAnimal(),
     })
   }
 
