@@ -2,26 +2,41 @@ import React, { Component } from 'react';
 import './Card.css';
 
 class Card extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      search: this.props.getAnimal(),
+    }
+  }
   componentDidMount() {
+    this.startTyping();
+  }
+
+  componentDidUpdate() {
+    this.startTyping();
+  }
+
+  startTyping() {
+    const input = this[this.props.searchTerm];
     // https://stackoverflow.com/questions/28889826/set-focus-on-input-after-render
-    this.nameInput.focus();
+    input.focus();
 
     const interval = setInterval(() => {
-      const currentLength = this.nameInput.value.length;
-      const searchTermLength = this.props.searchTerm.length;
+      const currentLength = input.value.length;
+      const searchTermLength = this.state.search.length;
       if (currentLength === searchTermLength) {
         clearCard();
       }
       // take the length of the current value, add one, and grab the first n characters
       // from the search term
-      this.nameInput.value = this.props.searchTerm.substring(0, this.nameInput.value.length + 1);
-    }, 100);
+      input.value = this.state.search.substring(0, input.value.length + 1);
+    }, 1000);
 
     const clearCard = this.clearCard(interval);
   }
 
   clearCard(interval) {
-    const { typingComplete } = this.props;
+    const { typingComplete } = this;
     return function() {
       clearInterval(interval);
       setTimeout(() => {
@@ -30,13 +45,19 @@ class Card extends Component {
     }
   }
 
+  typingComplete = () => {
+    this.setState({ search: this.props.getAnimal() })
+  }
+
   render() {
-    const { color } = this.props;
+    const { getColor } = this.props;
+    const color = getColor();
+
     return (
       <div className={`card card--${color}`}>
         <input
           className="card__input"
-          ref={(input) => { this.nameInput = input; }}
+          ref={(input) => { this[this.props.searchTerm] = input; }}
           type="text"
           value=''
         />

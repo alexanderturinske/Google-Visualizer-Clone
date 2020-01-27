@@ -8,16 +8,19 @@ class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      current: 0,
-      size: 1,
+      size: 25,
     }
+  }
+
+  getAnimal = () => {
+    return animals[Math.floor(Math.random() * animals.length)]
   }
 
   getAnimals() {
     const { current, size } = this.state;
     const shownAnimals = [];
     for(let i = 0; i < size; i++) {
-      shownAnimals.push(animals[current]);
+      shownAnimals.push(animals[current + i]);
     }
     return shownAnimals;
   }
@@ -26,14 +29,10 @@ class App extends Component {
     return colors[Math.floor(Math.random() * colors.length)]
   }
 
-  typingComplete = () => {
-    const { current, size } = this.state;
-    this.setState({ current: current + size });
-  }
-
   render() {
+    // TODO: this is now used to create a unique
+    // array of information; use some other method
     const shownAnmials = this.getAnimals();
-    const color = this.getColor();
 
     return (
       <div className='App'>
@@ -42,9 +41,9 @@ class App extends Component {
           shownAnmials.map(animal => (
             <Card
               key={animal}
-              color={color}
+              getColor={this.getColor}
+              getAnimal={this.getAnimal}
               searchTerm={animal}
-              typingComplete={this.typingComplete}
             />
           ))
         }
