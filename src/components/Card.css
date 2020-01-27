@@ -35,6 +35,16 @@
   left: 0;
 }
 
+.card__input {
+  border: none;
+  outline: none;
+  background: none;
+  font-size: 3rem;
+  color: #FFF;
+  max-width: 100%;
+}
+
+/* ANIMATIONS
 /* Inspiration from
 https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
 https://stackoverflow.com/questions/55509418/react-css-transition-css-for-fade-in-and-out-when-background-image-is-changed
@@ -43,32 +53,54 @@ https://stackoverflow.com/questions/55509418/react-css-transition-css-for-fade-i
   z-index: 1;
   -webkit-animation-duration: 1s;
   -webkit-animation-name: left;
-  -webkit-animation-direction: alternate;
   animation-duration: 1s;
   animation-name: left;
-  animation-direction: alternate;
 }
 
 @-webkit-keyframes left {
   from {
     margin-left: 100%;
-    width: 300%; 
   }
 
   to {
     margin-left: 0%;
-    width: 100%;
   }
 }
 
 @keyframes left {
   from {
     margin-left: 100%;
-    width: 300%; 
   }
 
   to {
     margin-left: 0%;
+  }
+}
+
+.card--right {
+  z-index: 1;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: right;
+  animation-duration: 1s;
+  animation-name: right;
+}
+
+@-webkit-keyframes right {
+  from {
+    width: 0%; 
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes right {
+  from {
+    width: 0%; 
+  }
+
+  to {
     width: 100%;
   }
 }
@@ -77,43 +109,56 @@ https://stackoverflow.com/questions/55509418/react-css-transition-css-for-fade-i
   z-index: 1;
   -webkit-animation-duration: 1s;
   -webkit-animation-name: top;
-  -webkit-animation-direction: alternate;
   animation-duration: 1s;
   animation-name: top;
-  animation-direction: alternate;
 }
 
 @-webkit-keyframes top {
   from {
     margin-top: 100%;
-    width: 300%;
   }
 
   to {
     margin-top: 0%;
-    width: 100%;
   }
 }
 
 @keyframes top {
   from {
     margin-top: 100%;
-    width: 300%;
   }
 
   to {
     margin-top: 0%;
-    width: 100%;
   }
 }
 
-.card__input {
-  border: none;
-  outline: none;
-  background: none;
-  font-size: 3rem;
-  color: #FFF;
-  max-width: 100%;
+.card--bottom {
+  z-index: 1;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: bottom;
+  animation-duration: 1s;
+  animation-name: bottom;
+}
+
+@-webkit-keyframes bottom {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+@keyframes bottom {
+  from {
+    height: 0%;
+  }
+
+  to {
+    height: 100%;
+  }
 }
 
 /* Copied from https://codepen.io/ArtemGordinsky/pen/GnLBq */

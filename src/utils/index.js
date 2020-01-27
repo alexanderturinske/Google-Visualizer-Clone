@@ -1,6 +1,6 @@
 import ANIMALS from '../assets/animal_names.json'
 import COLORS  from '../assets/colors.json'
-const TRANSITIONS = ['card--left', 'card--top'];
+const TRANSITIONS = ['card--left', 'card--right', 'card--top', 'card--bottom'];
 
 const getUniqueChoice = (collection, exclude) => {
   if (exclude) {
