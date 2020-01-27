@@ -1,18 +1,20 @@
 import React, { Component } from 'react';
 import './Card.css';
-import { getAnimal, getColor } from '../utils';
+import { getAnimal, getColor, getTransition } from '../utils';
 
 class Card extends Component {
   constructor(props) {
     super(props);
 
     const frontColor = getColor();
+    const transition = getTransition();
     this.state = {
       frontColor,
       backColor: getColor(frontColor),
       current: '',
       isFrontShowing: true,
       search: getAnimal(),
+      transition,
     }
   }
 
@@ -70,15 +72,17 @@ class Card extends Component {
     this.setState({
       current: '',
       isFrontShowing: !this.state.isFrontShowing,
-      search: getAnimal(),
+      search: getAnimal(this.state.search),
+      transition: getTransition(this.state.transition),
     })
   }
 
   isFrontShowing({ isFront }) {
+    const { isFrontShowing, transition } = this.state;
     if (isFront) {
-      return this.state.isFrontShowing ? 'card--hidden' : 'card--visible';
+      return isFrontShowing ? 'card--hidden' : transition;
     } else {
-      return this.state.isFrontShowing ? 'card--visible' : 'card--hidden';
+      return isFrontShowing ? transition : 'card--hidden';
     }
   }
   render() {

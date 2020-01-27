@@ -1,32 +1,34 @@
-import animals from '../assets/animal_names.json'
-import colors  from '../assets/colors.json'
+import ANIMALS from '../assets/animal_names.json'
+import COLORS  from '../assets/colors.json'
+const TRANSITIONS = ['card--left', 'card--top'];
 
-export const getAnimal = exclude => {
+const getUniqueChoice = (collection, exclude) => {
   if (exclude) {
-    let newAnimal = animals[Math.floor(Math.random() * animals.length)];
-    while (newAnimal === exclude) {
-      newAnimal = animals[Math.floor(Math.random() * animals.length)];
+    let newItem = collection[Math.floor(Math.random() * collection.length)];
+    while (newItem === exclude) {
+      newItem = collection[Math.floor(Math.random() * collection.length)];
     }
-    return newAnimal;
+    return newItem;
   }
-  return animals[Math.floor(Math.random() * animals.length)]
+  return collection[Math.floor(Math.random() * collection.length)]
 }
 
 export const getAnimals = size => {
   const initialAnimals = [];
   for(let i = 0; i < size; i++) {
-    initialAnimals.push(animals[i]);
+    initialAnimals.push(ANIMALS[i]);
   }
   return initialAnimals;
 }
 
+export const getAnimal = exclude => {
+  return getUniqueChoice(ANIMALS, exclude);
+}
+
 export const getColor = exclude => {
-  if (exclude) {
-    let newColor = colors[Math.floor(Math.random() * colors.length)];
-    while (newColor === exclude) {
-      newColor = colors[Math.floor(Math.random() * colors.length)];
-    }
-    return newColor;
-  }
-  return colors[Math.floor(Math.random() * colors.length)]
+  return getUniqueChoice(COLORS, exclude);
+}
+
+export const getTransition = exclude => {
+  return getUniqueChoice(TRANSITIONS, exclude);
 }
