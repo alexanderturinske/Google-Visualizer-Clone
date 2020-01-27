@@ -25,7 +25,14 @@ class App extends Component {
     return shownAnimals;
   }
 
-  getColor() {
+  getColor(exclude) {
+    if (exclude) {
+      let newColor = colors[Math.floor(Math.random() * colors.length)];
+      while (newColor === exclude) {
+        newColor = colors[Math.floor(Math.random() * colors.length)];
+      }
+      return newColor;
+    }
     return colors[Math.floor(Math.random() * colors.length)]
   }
 

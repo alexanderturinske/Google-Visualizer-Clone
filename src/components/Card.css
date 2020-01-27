@@ -1,10 +1,14 @@
-.card {
+.card, .card__front, .card__back {
   text-align: center;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100%;
   width: 100%;
+}
+
+.card {
+  position: relative;
 }
 
 .card--red {
@@ -21,6 +25,52 @@
 
 .card--yellow {
   background-color: burlywood;
+}
+
+.card__front, .card__back {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+/* Inspiration from
+https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Animations/Using_CSS_animations
+https://stackoverflow.com/questions/55509418/react-css-transition-css-for-fade-in-and-out-when-background-image-is-changed
+*/
+.card--visible {
+  z-index: 1;
+  -webkit-animation-duration: 1s;
+  -webkit-animation-name: in;
+  -webkit-animation-direction: alternate;
+  animation-duration: 1s;
+  animation-name: in;
+  animation-direction: alternate;
+}
+
+@-webkit-keyframes in {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
+}
+
+@keyframes in {
+  from {
+    margin-left: 100%;
+    width: 300%; 
+  }
+
+  to {
+    margin-left: 0%;
+    width: 100%;
+  }
 }
 
 .card__input {
