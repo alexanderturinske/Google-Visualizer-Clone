@@ -5,31 +5,32 @@ class Card extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      color: this.props.getColor(),
+      current: '',
       search: this.props.getAnimal(),
     }
   }
+
   componentDidMount() {
     this.startTyping();
   }
 
   componentDidUpdate() {
-    this.startTyping();
+    if (!this.state.current) {
+      this.startTyping();
+    }
   }
 
   startTyping() {
-    const input = this[this.props.searchTerm];
-    // https://stackoverflow.com/questions/28889826/set-focus-on-input-after-render
-    input.focus();
-
     const interval = setInterval(() => {
-      const currentLength = input.value.length;
+      const currentLength = this.state.current.length;
       const searchTermLength = this.state.search.length;
       if (currentLength === searchTermLength) {
         clearCard();
       }
       // take the length of the current value, add one, and grab the first n characters
       // from the search term
-      input.value = this.state.search.substring(0, input.value.length + 1);
+      this.setState({ current: this.state.search.substring(0, this.state.current.length + 1) })
     }, 1000);
 
     const clearCard = this.clearCard(interval);
@@ -41,26 +42,21 @@ class Card extends Component {
       clearInterval(interval);
       setTimeout(() => {
         typingComplete();
-      }, Math.random() * 2);
+      }, Math.random() * 5000);
     }
   }
 
   typingComplete = () => {
-    this.setState({ search: this.props.getAnimal() })
+    this.setState({ search: this.props.getAnimal(), current: '' })
   }
 
   render() {
-    const { getColor } = this.props;
-    const color = getColor();
-
     return (
-      <div className={`card card--${color}`}>
-        <input
-          className="card__input"
-          ref={(input) => { this[this.props.searchTerm] = input; }}
-          type="text"
-          value=''
-        />
+      <div className={`card card--${this.state.color}`}>
+        <div className="card__input">
+          {this.state.current}
+        </div>
+        <span className="blinking-cursor">|</span>
       </div>
     );
   }
