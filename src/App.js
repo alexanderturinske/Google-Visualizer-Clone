@@ -3,6 +3,9 @@ import './App.css';
 import { getAnimals } from './utils'
 import { Card } from './components'
 
+/**
+ * Root React Component for the Application
+ */
 class App extends Component {
   constructor(props) {
     super(props);

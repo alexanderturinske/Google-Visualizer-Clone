@@ -1,7 +1,11 @@
 import React, { Component } from 'react';
 import './Card.css';
 import { getAnimal, getColor, getTransition } from '../utils';
+import PropTypes from 'prop-types';
 
+/**
+ * Card Component
+ */
 class Card extends Component {
   constructor(props) {
     super(props);
@@ -28,6 +32,9 @@ class Card extends Component {
     }
   }
 
+  /**
+   * Starts the typing by updating the state on a set interval of 1s
+   */
   startTyping() {
     const interval = setInterval(() => {
       const currentLength = this.state.current.length;
@@ -58,6 +65,10 @@ class Card extends Component {
     const clearCard = this.clearCard(interval);
   }
 
+  /**
+   * Clears the card after a random time between 0s and 5s
+   * @param {string} interval id of the setInterval for typing
+   */
   clearCard(interval) {
     const { typingComplete } = this;
     return function() {
@@ -68,6 +79,9 @@ class Card extends Component {
     }
   }
 
+  /**
+   * Sets the state once the typing of the word is complete
+   */
   typingComplete = () => {
     this.setState({
       current: '',
@@ -77,17 +91,22 @@ class Card extends Component {
     })
   }
 
-  isFrontShowing({ isFront }) {
+  /**
+   * Get the necessary class for the card requesting
+   * @param {Object} param0 contains isFront, a boolean on whether this is the front card
+   * @returns {string} css class based on whether it should be hidden or have a transition
+   */
+  isFrontShowing({ isFrontCard }) {
     const { isFrontShowing, transition } = this.state;
-    if (isFront) {
+    if (isFrontCard) {
       return isFrontShowing ? 'card--hidden' : transition;
     } else {
       return isFrontShowing ? transition : 'card--hidden';
     }
   }
   render() {
-    const frontCardClass = `card__front ${this.isFrontShowing({ isFront: true })} card--${this.state.frontColor}`
-    const backCardClass = `card__back ${this.isFrontShowing({ isFront: false })} card--${this.state.backColor}`
+    const frontCardClass = `card__front ${this.isFrontShowing({ isFrontCard: true })} card--${this.state.frontColor}`;
+    const backCardClass = `card__back ${this.isFrontShowing({ isFrontCard: false })} card--${this.state.backColor}`;
 
     return (
       <div className={`card`}>
@@ -106,6 +125,11 @@ class Card extends Component {
       </div>
     );
   }
+}
+
+Card.propTypes = {
+  /* Initial term to type out */
+  searchTerm: PropTypes.string,
 }
 
 export default Card;
