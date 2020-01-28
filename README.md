@@ -3,19 +3,19 @@
 Build a clone of the [Google Trends visualizer](https://trends.google.com/trends/hottrends/visualize?pn=p1&nrow=5&ncol=5) using pure React that displays random animal names.
 
 ## Requirements
- - A 5x5 grid of tiles showing current Trends
- - Each tile should type and animate like the [Google Trends visualizer](https://trends.google.com/trends/hottrends/visualize?pn=p1&nrow=5&ncol=5)
- - Each time a tile is generated it should be a random color from a fixed set of colors (You can use the same colors as google trends if you want)
- - Use only React. No other runtime libraries. (Webpack and other build tools are fine)
+ - [x] A 5x5 grid of tiles showing current Trends
+ - [x] Each tile should type and animate like the [Google Trends visualizer](https://trends.google.com/trends/hottrends/visualize?pn=p1&nrow=5&ncol=5)
+ - [x] Each time a tile is generated it should be a random color from a fixed set of colors (You can use the same colors as google trends if you want)
+ - [x] Use only React. No other runtime libraries. (Webpack and other build tools are fine)
 
 ## Bonus Requirements
 Bonus requirements are all completely optional but will show us extra initiative and your skills.
 
- - Completely Random Colors with no adjacent tiles being the same color ([See Example](./no_adjacent.png))
- - Option to set grid size
+ - [ ] Completely Random Colors with no adjacent tiles being the same color ([See Example](./no_adjacent.png))
+ - [ ] Option to set grid size
    - *Example*: Add the option to make it anywhere from 1x1 to 20x20
- - Change Grid size automatically on window resize (Responsiveness)
- - Use CSS Grid
+ - [ ] Change Grid size automatically on window resize (Responsiveness)
+ - [x] Use CSS Grid
 
 ## Evaluation Criteria
  - Logic
