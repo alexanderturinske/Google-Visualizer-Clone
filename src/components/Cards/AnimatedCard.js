@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
-import './Card.css';
-import { getAnimal, getColor, getTransition } from '../utils';
 import PropTypes from 'prop-types';
+import './Card.css';
+import Card from './Card';
+import { getAnimal, getColor, getTransition } from '../../utils';
 
 /**
  * Card Component
  */
-class Card extends Component {
+class AnimatedCard extends Component {
   constructor(props) {
     super(props);
 
@@ -104,32 +105,23 @@ class Card extends Component {
       return isFrontShowing ? transition : 'card--hidden';
     }
   }
+
   render() {
     const frontCardClass = `card__front ${this.isFrontShowing({ isFrontCard: true })} card--${this.state.frontColor}`;
     const backCardClass = `card__back ${this.isFrontShowing({ isFrontCard: false })} card--${this.state.backColor}`;
 
     return (
-      <div className={`card`}>
-        <div className={`${frontCardClass}`}>
-          <div className="card__input">
-            {this.state.current}
-          </div>
-          <span className="blinking-cursor">|</span>
-        </div>
-        <div className={`${backCardClass}`}>
-          <div className="card__input">
-            {this.state.current}
-          </div>
-          <span className="blinking-cursor">|</span>
-        </div>
+      <div className={`card-container`}>
+        <Card cardClass={frontCardClass} display={this.state.current} />
+        <Card cardClass={backCardClass} display={this.state.current} />
       </div>
     );
   }
 }
 
-Card.propTypes = {
+AnimatedCard.propTypes = {
   /* Initial term to type out */
   searchTerm: PropTypes.string,
 }
 
-export default Card;
+export default AnimatedCard;

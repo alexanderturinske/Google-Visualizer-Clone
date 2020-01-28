@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { getAnimals } from './utils'
-import { Card } from './components'
+import { AnimatedCard } from './components'
 
 /**
  * Root React Component for the Application
@@ -22,7 +22,7 @@ class App extends Component {
         <button className='card-size'></button>
         {
           initalAnimals.map(animal => (
-            <Card
+            <AnimatedCard
               key={animal}
               searchTerm={animal}
             />
